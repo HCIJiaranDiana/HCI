@@ -45,11 +45,7 @@ public class UserPreference {
         this.pos_pre = pos_pre;
     }
 
-    public float getReview_pre() {
-        return review_pre;
-    }
+    public float getReview_pre() { return review_pre; }
 
-    public void setReview_pre(float review_pre) {
-        this.review_pre = review_pre;
-    }
+    public void setReview_pre(float review_pre) { this.review_pre = review_pre; }
 }
