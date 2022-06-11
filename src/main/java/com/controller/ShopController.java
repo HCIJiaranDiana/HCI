@@ -67,7 +67,7 @@ public class ShopController {
     public String traverseentity() {
         List<Shop> allshop= shopService.findAll();
         for(Shop shop : allshop){
-
+            System.out.print(shop);
         }
         return "Hello!";
     }
