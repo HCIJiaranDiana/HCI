@@ -22,6 +22,9 @@ public class User {
     private Long createTime; // 创建时间
     private Long updateTime; // 最后修改时间
     private Integer userType;
+    private float posx; //纬度
+    private float posy; //经度
+    private Long lastShopId;
 
     public Long getUserId() {
         return id;
@@ -48,8 +51,32 @@ public class User {
     }
 
     public Integer getUserType() {return userType;}
+
     public void setUserType(Integer userType) {
         this.userType = userType;
     }
 
+    public float getPosx() {
+        return posx;
+    }
+
+    public void setPosx(float posx) {
+        this.posx = posx;
+    }
+
+    public float getPosy() {
+        return posy;
+    }
+
+    public void setPosy(float posy) {
+        this.posy = posy;
+    }
+
+    public Long getlastShopId() {
+        return lastShopId;
+    }
+
+    public void setlastShopId(Long lastShopId) {
+        this.lastShopId = lastShopId;
+    }
 }

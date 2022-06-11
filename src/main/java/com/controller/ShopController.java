@@ -16,10 +16,14 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Field;
+import java.util.List;
 
 
 @RestController
 public class ShopController {
+    private float[] Allshopdis;
+
     @Autowired
     private ShopService shopService;
     /**
@@ -58,5 +62,14 @@ public class ShopController {
         return res;
     }
 
+
+    @RequestMapping(value = "/traverseentity")
+    public String traverseentity() {
+        List<Shop> allshop= shopService.findAll();
+        for(Shop shop : allshop){
+
+        }
+        return "Hello!";
+    }
 
 }

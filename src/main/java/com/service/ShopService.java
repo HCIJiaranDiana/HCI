@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.biboheart.brick.exception.BhException;
 import com.entity.Shop;
+import com.repository.ShopRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +37,6 @@ public interface ShopService {
      * @return 商户信息或null
      */
     public Shop load(Long id);
+
+    public List<Shop> findAll();
 }
