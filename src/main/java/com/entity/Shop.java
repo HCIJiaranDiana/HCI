@@ -21,9 +21,8 @@ public class Shop {
     private float review; //评分
     private float posx; //纬度
     private float posy; //经度
-    private float detailurl;; //详情链接
-    private int shoptype; // 商户第一个标签
-    private int shoptype2; // 商户第二个标签
+    private String detailurl;; //详情链接
+    private String shoptype; // 商户第一个标签
 
 
     public Long getShopId() {
@@ -81,26 +80,19 @@ public class Shop {
         this.posy = posy;
     }
 
-    public float getDetailurl() {
+    public String getDetailurl() {
         return detailurl;
     }
 
-    public void setDetailurl(float detailurl) {
+    public void setDetailurl(String detailurl) {
         this.detailurl = detailurl;
     }
 
-    public int getShoptype() {
+    public String getShoptype() {
         return shoptype;
     }
 
-    public void setShoptype(int shoptype) {
+    public void setShoptype(String shoptype) {
         this.shoptype = shoptype;
-    }
-    public int getShoptype2() {
-        return shoptype2;
-    }
-
-    public void setShoptype2(int shoptype2) {
-        this.shoptype2 = shoptype2;
     }
 }
