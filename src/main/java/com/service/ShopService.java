@@ -39,4 +39,6 @@ public interface ShopService {
     public Shop load(Long id);
 
     public List<Shop> findAll();
+
+    public List<Shop> findByShopType(String shoptype);
 }
