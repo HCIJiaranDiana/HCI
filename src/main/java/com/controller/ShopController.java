@@ -17,15 +17,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
 public class ShopController {
-    private float[] Allshopdis;
+    private List<Float> Allshopdis;
 
     @Autowired
     private ShopService shopService;
+
+    @Autowired
+    private UserService userService;
     /**
      * 计算用户和商户距离
      * @param posx 用户当前经度
@@ -63,13 +67,31 @@ public class ShopController {
     }
 
 
-    @RequestMapping(value = "/traverseentity")
-    public String traverseentity() {
+    @RequestMapping(value = "/traverseentity", method = {RequestMethod.POST},produces = {"application/json;charset=UTF-8"})
+    public Shop traverseentity(Long userid) {
+        Allshopdis = new ArrayList<>();
         List<Shop> allshop= shopService.findAll();
+        long num = allshop.size();
+        long minshopid = -1;
+        float mindis = 100.0f;
+        User user = userService.load(userid);
+        float me_posx =  user.getPosx();
+        float me_posy =  user.getPosy();
         for(Shop shop : allshop){
-
+            float shop_posx = shop.getPosx();
+            float shop_posy = shop.getPosy();
+            float res = Math.abs(shop_posx - me_posx)+Math.abs(shop_posy-me_posy);
+            Allshopdis.add(res);
         }
-        return "Hello!";
+        for(int i = 0 ;i <num  ; i++) {
+            float tmp = Allshopdis.get(i);
+            if (tmp < mindis) {
+                minshopid = i + 1;
+                mindis = tmp;
+            }
+        }
+        Shop mindisshop = shopService.load(minshopid);
+        return mindisshop;
     }
 
 }
