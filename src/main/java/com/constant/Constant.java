@@ -18,4 +18,11 @@ public class Constant {
     public static final Integer NO_SUCH_USER = -1;
     public static final Integer MANAGER = 0;
     public static final Integer CUSTOMER = 1;
+    public static final String TAG_1 = "火锅";
+    public static final String TAG_2 = "火锅";
+    public static final String TAG_3 = "火锅";
+    public static final String TAG_4 = "火锅";
+    public static final String TAG_5 = "火锅";
+    public static final String TAG_6 = "火锅";
+
 }

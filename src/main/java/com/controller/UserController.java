@@ -2,7 +2,13 @@ package com.controller;
 
 import com.biboheart.brick.exception.BhException;
 import com.biboheart.brick.model.BhResponseResult;
+import com.constant.Constant;
+import com.entity.Shop;
 import com.entity.User;
+import com.entity.UserFlavor;
+import com.entity.UserPreference;
+import com.service.ShopService;
+import com.service.UserFlavorService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +22,11 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ShopService shopService;
+    @Autowired
+    private UserFlavorService userFlavorService;
+
 
     /**
      * 保存用户信息
@@ -60,9 +71,58 @@ public class UserController {
         List<User> users = userService.list();
         return new BhResponseResult<>(0, "success", users);
     }
-    @RequestMapping(value = "/userapi/user/find", method = {RequestMethod.POST, RequestMethod.GET})
-    public BhResponseResult<?> find(Integer pageOffset, Integer pageSize) {
-        Page<User> users = userService.find(pageOffset, pageSize);
-        return new BhResponseResult<>(0, "success", users);
+
+    /**
+     * 处理用户回馈
+     * @param user_id 用户id
+     * @param feedback 用户回馈
+     * @return
+     */
+    @RequestMapping(value = "/handlefeedback")
+    public boolean handlefeedback(Long user_id,int feedback) {
+        User user = userService.load(user_id);
+        if(user == null) {
+            return false;
+        }
+        UserFlavor userFlavor = userFlavorService.load(user_id);
+        if(userFlavor == null) {
+            return false;
+        }
+        long lastShopId = user.getlastShopId();
+        Shop lastShop = shopService.load(lastShopId);
+        String lastShopType = lastShop.getShoptype();
+        if (lastShopType == Constant.TAG_1) {
+            float oldValue = userFlavor.getTag1() + feedback;
+            userFlavor.setTag1(oldValue);
+            return true;
+        }
+        else if (lastShopType == Constant.TAG_2) {
+            float oldValue = userFlavor.getTag2() + feedback;
+            userFlavor.setTag2(oldValue);
+            return true;
+        }
+        else if (lastShopType == Constant.TAG_3) {
+            float oldValue = userFlavor.getTag3() + feedback;
+            userFlavor.setTag3(oldValue);
+            return true;
+        }
+        else if (lastShopType == Constant.TAG_4) {
+            float oldValue = userFlavor.getTag4() + feedback;
+            userFlavor.setTag4(oldValue);
+            return true;
+        }
+        else if (lastShopType == Constant.TAG_5) {
+            float oldValue = userFlavor.getTag5() + feedback;
+            userFlavor.setTag5(oldValue);
+            return true;
+        }
+        else if (lastShopType == Constant.TAG_6) {
+            float oldValue = userFlavor.getTag6() + feedback;
+            userFlavor.setTag6(oldValue);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
