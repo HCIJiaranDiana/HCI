@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.biboheart.brick.exception.BhException;
 import com.constant.Constant;
 import com.entity.User;
 import com.service.CallCountService;
@@ -31,9 +32,11 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/login")
 
-    public Msg login(@RequestBody JSONObject param){
+    public Msg login(@RequestBody JSONObject param) throws BhException {
         String username = param.getString("username");
         String password = param.getString("password");
+        float posx = (float) param.getDouble("posx");
+        float posy = (float) param.getDouble("posy");
         User auth = userService.checkUser(username, password);
         if(auth != null){
             new Thread(new Add(callCountService)).start();
@@ -45,6 +48,12 @@ public class LoginController {
 
             JSONObject data = JSONObject.fromObject(auth);
             data.remove(Constant.PASSWORD);
+
+            auth.setPosx(posx);
+            auth.setPosy(posy);
+
+
+            auth = userService.save(auth);
 
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
         }

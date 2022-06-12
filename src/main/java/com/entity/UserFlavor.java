@@ -32,6 +32,25 @@ public class UserFlavor {
 
     private float tag9; //用户对于tag9的偏好权重
 
+    private float tag10; //用户对于tag10的偏好权重
+
+    private float tag11; //用户对于tag11的偏好权重
+
+    private float tag12; //用户对于tag12的偏好权重
+
+    private float tag13; //用户对于tag13的偏好权重
+
+    private float tag14; //用户对于tag14的偏好权重
+
+    private float tag15; //用户对于tag15的偏好权重
+
+    private float tag16; //用户对于tag16的偏好权重
+
+    private float tag17; //用户对于tag17的偏好权重
+
+    private float tag18; //用户对于tag18的偏好权重
+
+    private float tag19; //用户对于tag19的偏好权重
     public Long getUserId() {
         return id;
     }
@@ -76,6 +95,46 @@ public class UserFlavor {
         return tag9;
     }
 
+    public float getTag10() {
+        return tag10;
+    }
+
+    public float getTag11() {
+        return tag11;
+    }
+
+    public float getTag12() {
+        return tag12;
+    }
+
+    public float getTag13() {
+        return tag13;
+    }
+
+    public float getTag14() {
+        return tag14;
+    }
+
+    public float getTag15() {
+        return tag15;
+    }
+
+    public float getTag16() {
+        return tag16;
+    }
+
+    public float getTag17() {
+        return tag17;
+    }
+
+    public float getTag18() {
+        return tag18;
+    }
+
+    public float getTag19() {
+        return tag19;
+    }
+
     public void setTag1(float tag1) {
         this.tag1 = tag1;
     }
@@ -110,5 +169,45 @@ public class UserFlavor {
 
     public void setTag9(float tag9) {
         this.tag9 = tag9;
+    }
+
+    public void setTag10(float tag10) {
+        this.tag10 = tag10;
+    }
+
+    public void setTag11(float tag11) {
+        this.tag11 = tag11;
+    }
+
+    public void setTag12(float tag12) {
+        this.tag12 = tag12;
+    }
+
+    public void setTag13(float tag13) {
+        this.tag13 = tag13;
+    }
+
+    public void setTag14(float tag14) {
+        this.tag14 = tag14;
+    }
+
+    public void setTag15(float tag15) {
+        this.tag15 = tag15;
+    }
+
+    public void setTag16(float tag16) {
+        this.tag16 = tag16;
+    }
+
+    public void setTag17(float tag17) {
+        this.tag17 = tag17;
+    }
+
+    public void setTag18(float tag18) {
+        this.tag8 = tag18;
+    }
+
+    public void setTag19(float tag19) {
+        this.tag9 = tag19;
     }
 }
