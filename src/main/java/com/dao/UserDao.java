@@ -9,7 +9,7 @@ public interface UserDao {
 
     User checkUser(String username, String password);
 
-    User register(String username, String password, String mail);
+    User register(String username, String password);
 
     User exist(String username);
 

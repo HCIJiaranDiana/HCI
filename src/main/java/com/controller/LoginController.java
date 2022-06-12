@@ -91,17 +91,18 @@ public class LoginController {
         }
     }
 
+
+    @ResponseBody
     @RequestMapping("/register")
-    public boolean exist(@RequestBody Map<String, String> params){
-        String username = params.get(Constant.USERNAME);
-        String password = params.get(Constant.PASSWORD);
-        String mail=params.get(Constant.MAIL);
+    public boolean exist(@RequestBody JSONObject param){
+        String username = param.getString("username");
+        String password = param.getString("password");
         User userAuth=userService.exist(username);
         if(userAuth==null) {
-            userService.register(username,password,mail);
-            return false;
+            userService.register(username,password);
+            return true;
         }
-        else return true;
+        else return false;
     }
     @RequestMapping("/getCallNum")
     public int getNum() throws ExecutionException, InterruptedException {

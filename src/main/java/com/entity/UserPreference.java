@@ -12,7 +12,6 @@ import lombok.Data;
 @Table(name = "user_preference")
 public class UserPreference {
     @Id
-    @GeneratedValue
     private Long id; // 用户ID
 
     private float price_pre; //用户对于价格的偏好权重

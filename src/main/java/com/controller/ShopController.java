@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.biboheart.brick.exception.BhException;
 import com.constant.Constant;
 import com.entity.Shop;
 import com.entity.User;
@@ -67,13 +68,13 @@ public class ShopController {
     }
 
 
-    @RequestMapping(value = "/traverseentity", method = {RequestMethod.POST},produces = {"application/json;charset=UTF-8"})
-    public Shop traverseentity(Long userid) {
+    @RequestMapping(value = "/getmindisshop", method = {RequestMethod.POST},produces = {"application/json;charset=UTF-8"})
+    public Shop traverseentity(Long userid)throws BhException {
         Allshopdis = new ArrayList<>();
         List<Shop> allshop= shopService.findAll();
         long num = allshop.size();
         long minshopid = -1;
-        float mindis = 100.0f;
+        float mindis = 1000000000.0f;
         User user = userService.load(userid);
         float me_posx =  user.getPosx();
         float me_posy =  user.getPosy();
@@ -91,6 +92,8 @@ public class ShopController {
             }
         }
         Shop mindisshop = shopService.load(minshopid);
+        user.setlastShopId(minshopid);
+        userService.save(user);
         return mindisshop;
     }
 

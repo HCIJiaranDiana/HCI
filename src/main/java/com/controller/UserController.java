@@ -2,7 +2,11 @@ package com.controller;
 
 import com.biboheart.brick.exception.BhException;
 import com.biboheart.brick.model.BhResponseResult;
+import com.entity.Shop;
 import com.entity.User;
+import com.entity.UserFlavor;
+import com.service.ShopService;
+import com.service.UserFlavorService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +20,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserFlavorService userFlavorService;
+    @Autowired
+    private ShopService shopService;
 
     /**
      * 保存用户信息
@@ -64,5 +72,29 @@ public class UserController {
     public BhResponseResult<?> find(Integer pageOffset, Integer pageSize) {
         Page<User> users = userService.find(pageOffset, pageSize);
         return new BhResponseResult<>(0, "success", users);
+    }
+
+
+    /**
+     * 处理用户回馈
+     * @param user_id 用户id
+     * @param feedback 用户回馈
+     * @return
+     */
+    @RequestMapping(value = "/handlefeedback")
+    public boolean handlefeedback(Long user_id,float feedback) {
+        User user = userService.load(user_id);
+        if(user == null) {
+            return false;
+        }
+        UserFlavor userFlavor = userFlavorService.load(user_id);
+        if(userFlavor == null) {
+            return false;
+        }
+        long lastShopId = user.getlastShopId();
+        Shop lastShop = shopService.load(lastShopId);
+        String lastShopType = lastShop.getShoptype();
+        boolean ret = userService.updateUserFlavor(user_id,lastShopType,feedback);
+        return ret;
     }
 }

@@ -24,7 +24,7 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
     private UserPreferenceDao userPreferenceDao;
     @Override
     public UserPreference save(UserPreference userPreference) throws BhException {
-        if (null == userPreference.getId()) {
+        if (null == userPreference.getUserId()) {
             throw new BhException("用户id不能为空");
         }
         userPreference = userPreferenceRepository.save(userPreference);

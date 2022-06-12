@@ -27,7 +27,7 @@ public class UserFlavorServiceImpl implements UserFlavorService {
     private UserFlavorDao userFlavorDao;
     @Override
     public UserFlavor save(UserFlavor userFlavor) throws BhException {
-        if (null == userFlavor.getId()) {
+        if (null == userFlavor.getUserId()) {
             throw new BhException("用户id不能为空");
         }
         userFlavor = userFlavorRepository.save(userFlavor);

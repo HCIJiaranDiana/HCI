@@ -11,7 +11,6 @@ import lombok.Data;
 @Table(name = "user_flavor")
 public class UserFlavor {
     @Id
-    @GeneratedValue
     private Long id; // 用户ID
 
     private float tag1; //用户对于tag1的偏好权重
