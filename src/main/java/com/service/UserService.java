@@ -45,6 +45,8 @@ public interface UserService {
     public List<User> list();
     public Page<User> find(Integer page, Integer size);
 
+    public boolean updateUserFlavor(long user_id,String flavor,float feedback);
+
     User checkUser(String username, String password);
 
     User exist(String username);

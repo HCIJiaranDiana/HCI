@@ -79,7 +79,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/handlefeedback")
-    public boolean handlefeedback(Long user_id,int feedback) {
+    public boolean handlefeedback(Long user_id,float feedback) {
         User user = userService.load(user_id);
         if(user == null) {
             return false;
@@ -91,38 +91,7 @@ public class UserController {
         long lastShopId = user.getlastShopId();
         Shop lastShop = shopService.load(lastShopId);
         String lastShopType = lastShop.getShoptype();
-        if (lastShopType == Constant.TAG_1) {
-            float oldValue = userFlavor.getTag1() + feedback;
-            userFlavor.setTag1(oldValue);
-            return true;
-        }
-        else if (lastShopType == Constant.TAG_2) {
-            float oldValue = userFlavor.getTag2() + feedback;
-            userFlavor.setTag2(oldValue);
-            return true;
-        }
-        else if (lastShopType == Constant.TAG_3) {
-            float oldValue = userFlavor.getTag3() + feedback;
-            userFlavor.setTag3(oldValue);
-            return true;
-        }
-        else if (lastShopType == Constant.TAG_4) {
-            float oldValue = userFlavor.getTag4() + feedback;
-            userFlavor.setTag4(oldValue);
-            return true;
-        }
-        else if (lastShopType == Constant.TAG_5) {
-            float oldValue = userFlavor.getTag5() + feedback;
-            userFlavor.setTag5(oldValue);
-            return true;
-        }
-        else if (lastShopType == Constant.TAG_6) {
-            float oldValue = userFlavor.getTag6() + feedback;
-            userFlavor.setTag6(oldValue);
-            return true;
-        }
-        else {
-            return false;
-        }
+        boolean ret = userService.updateUserFlavor(user_id,lastShopType,feedback);
+        return ret;
     }
 }
