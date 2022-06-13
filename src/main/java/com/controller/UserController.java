@@ -2,11 +2,9 @@ package com.controller;
 
 import com.biboheart.brick.exception.BhException;
 import com.biboheart.brick.model.BhResponseResult;
-import com.constant.Constant;
 import com.entity.Shop;
 import com.entity.User;
 import com.entity.UserFlavor;
-import com.entity.UserPreference;
 import com.service.ShopService;
 import com.service.UserFlavorService;
 import com.service.UserService;
@@ -23,10 +21,9 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private ShopService shopService;
-    @Autowired
     private UserFlavorService userFlavorService;
-
+    @Autowired
+    private ShopService shopService;
 
     /**
      * 保存用户信息
@@ -71,6 +68,12 @@ public class UserController {
         List<User> users = userService.list();
         return new BhResponseResult<>(0, "success", users);
     }
+    @RequestMapping(value = "/userapi/user/find", method = {RequestMethod.POST, RequestMethod.GET})
+    public BhResponseResult<?> find(Integer pageOffset, Integer pageSize) {
+        Page<User> users = userService.find(pageOffset, pageSize);
+        return new BhResponseResult<>(0, "success", users);
+    }
+
 
     /**
      * 处理用户回馈

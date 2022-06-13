@@ -35,4 +35,8 @@ public interface UserFlavorService {
      * @return 用户偏好信息或null
      */
     public UserFlavor load(Long id);
+
+    public List<Float> getTagWeigh(Long id);
+
+    public float turnFlavorIntoWeigh(float flavor);
 }

@@ -55,5 +55,11 @@ public class ShopServiceImpl implements ShopService {
         List<Shop> allshop = shopRepository.findAll();
         return allshop;
     }
+
+    @Override
+    public List<Shop> findByShopType(String shoptype){
+        List<Shop> shoplist = shopRepository.findByShopType(shoptype);
+        return shoplist;
+    }
 }
 

@@ -7,4 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 public interface ShopRepository extends JpaRepository<Shop, Long> {
+    @Query(value = "from Shop where shoptype = :shoptype ")
+    List<Shop> findByShopType(String shoptype);
 }

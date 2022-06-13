@@ -51,5 +51,8 @@ public interface UserService {
 
     User exist(String username);
 
-    User register(String username, String password, String mail);
+    User register(String username, String password);
+
+    public boolean updateUserFlavor(long user_id,String flavor,float feedback);
+
 }
