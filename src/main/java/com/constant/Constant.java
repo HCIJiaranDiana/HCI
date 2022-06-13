@@ -20,7 +20,7 @@ public class Constant {
     public static final Integer CUSTOMER = 1;
     public static final String TAG_1 = "烧腊";
     public static final String TAG_2 = "炒饭";
-    public static final String TAG_3 = "意面披萨";
+    public static final String TAG_3 = "披萨";
     public static final String TAG_4 = "麻辣烫";
     public static final String TAG_5 = "炸鸡";
     public static final String TAG_6 = "日韩料理";
