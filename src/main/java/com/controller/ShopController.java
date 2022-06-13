@@ -196,12 +196,21 @@ public class ShopController {
         float maxScore = -1000000.0f;
         int maxScoreIndex = -1;
         for(int i = 0 ; i<shopList.size() ; i++){
-            float posScore =  - userPreference.getPos_pre() * 100.0f * (float)Math.exp(5 * shopDistance.get(i) - 1) ;
+            // >-100分
+            float posScore =  - userPreference.getPos_pre() * 100.0f * (float)Math.exp(5 * shopDistance.get(i) - 1);
+            if (posScore < -1000.0f) {posScore = -1000.0f;}
+            posScore = posScore * ((float) Math.random()/2 + 0.5f);
             if(shopDistance.get(i)<0.2) System.out.println("Shop:" + shopList.get(i));
-            float costScore = - userPreference.getPrice_pre() * shopCost.get(i) * (float)Math.random();
-            float reviewScore = userPreference.getReview_pre() * shopReview.get(i) * 100.0f * (float)Math.random();
+            // 大约 0-100分
+            float costScore = - userPreference.getPrice_pre() * shopCost.get(i) * 2;
+            costScore = costScore * ((float) Math.random()/2 + 0.5f);
+            // 大约0-100分
+            float reviewScore = userPreference.getReview_pre() * (shopReview.get(i)-4) * 50.0f + 50.0f;
+           reviewScore = reviewScore * ((float) Math.random()/2 + 0.5f);
             float tmpScore = posScore + costScore + reviewScore;
-
+            System.out.println("PosScore:" + posScore);
+            System.out.println("costScore:" + costScore);
+            System.out.println("reviewScore:" + reviewScore);
             if (tmpScore>maxScore) {
                 maxScore = tmpScore;
                 maxScoreIndex = i;
