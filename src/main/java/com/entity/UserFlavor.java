@@ -203,10 +203,10 @@ public class UserFlavor {
     }
 
     public void setTag18(float tag18) {
-        this.tag8 = tag18;
+        this.tag18 = tag18;
     }
 
     public void setTag19(float tag19) {
-        this.tag9 = tag19;
+        this.tag19 = tag19;
     }
 }

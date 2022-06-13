@@ -41,14 +41,11 @@ public class UserDaoImpl implements UserDao {
         newUserAuth.setUserType(0);
         User userAuth=userAuthRepository.save(newUserAuth);
         UserFlavor userFlavor = new UserFlavor();
-        System.out.println("userId:"+userAuth.getUserId() );
         userFlavor.setUserId(userAuth.getUserId());
-        System.out.println("userId:"+userAuth.getUserId() );
         userFlavorRepository.save(userFlavor);
 
         UserPreference userPreference = new UserPreference();
         userPreference.setUserId(userAuth.getUserId());
-        System.out.println("userId:"+userAuth.getUserId() );
         userPreferenceRepository.save(userPreference);
 
         return userAuthRepository.save(userAuth);

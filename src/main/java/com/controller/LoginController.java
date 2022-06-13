@@ -120,7 +120,6 @@ public class LoginController {
     public JSONObject hello(){
         JSONObject outData = new JSONObject();
         outData.put("ResTable", "a");
-        System.out.println(11);
         return outData;
     }
 }

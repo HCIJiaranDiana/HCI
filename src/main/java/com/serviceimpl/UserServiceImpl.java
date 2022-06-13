@@ -103,15 +103,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updateUserFlavor(long user_id,String flavor,float feedback){
-        System.out.println("Id:"+user_id);
-        System.out.println("flavor:"+flavor);        System.out.println("feedback:"+feedback);
         User user = userRepository.findById(user_id).get();
-        System.out.println("user:"+user);
         if (user == null) {
             return false;
         }
         UserFlavor userFlavor = userFlavorRepository.findById(user_id).get();
-        System.out.println("UserFlavor:"+userFlavor);
         if (userFlavor == null) {
             return false;
         }

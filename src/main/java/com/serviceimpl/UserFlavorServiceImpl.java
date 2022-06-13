@@ -124,7 +124,6 @@ public class UserFlavorServiceImpl implements UserFlavorService {
         f = userFlavor.getTag19();
         w = turnFlavorIntoWeigh(f);
         tagWeigh.add(w);
-        System.out.println(tagWeigh);
         return tagWeigh;
     }
 

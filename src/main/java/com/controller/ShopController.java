@@ -49,15 +49,11 @@ public class ShopController {
     @RequestMapping(value = "/caldistance", method = {RequestMethod.POST},produces = {"application/json;charset=UTF-8"})
     public Shop caldistance(double posx,double posy,Long shop_id) {
         Shop shop = shopService.load(shop_id);
-        System.out.print("double:"+posx);
-        System.out.print("double:"+posy);
         float me_posx = (float)posx;
         float me_posy = (float)posy;
         float shop_posx = shop.getPosx();
         float shop_posy = shop.getPosy();
         float res = Math.abs(shop_posx - me_posx)+Math.abs(shop_posy-me_posy);
-
-        System.out.print("shop:"+shop);
         return shop;
     }
     @ResponseBody
@@ -113,7 +109,6 @@ public class ShopController {
             allWeigh += allTagWeigh.get(i);
         }
         float random = allWeigh * (float)Math.random();
-        System.out.println("random:"+ random);
         for (int i = 0;i<allTagWeigh.size();i++) {
             nowWeigh += allTagWeigh.get(i);
             if(random<nowWeigh) {
@@ -121,7 +116,6 @@ public class ShopController {
                 break;
             }
         }
-        System.out.println("tagIndex:"+ tagIndex);
         List<Shop> shopList = new ArrayList<>();
         if(tagIndex == 0) {return null;}
         else if(tagIndex == 1) {
@@ -203,12 +197,9 @@ public class ShopController {
         int maxScoreIndex = -1;
         for(int i = 0 ; i<shopList.size() ; i++){
             float posScore =  - userPreference.getPos_pre() * 100.0f * (float)Math.exp(5 * shopDistance.get(i) - 1) ;
-            System.out.println("posScore: "+posScore);
             if(shopDistance.get(i)<0.2) System.out.println("Shop:" + shopList.get(i));
             float costScore = - userPreference.getPrice_pre() * shopCost.get(i) * (float)Math.random();
-            System.out.println("costScore: "+costScore);
             float reviewScore = userPreference.getReview_pre() * shopReview.get(i) * 100.0f * (float)Math.random();
-            System.out.println("reviewScore: "+reviewScore);
             float tmpScore = posScore + costScore + reviewScore;
 
             if (tmpScore>maxScore) {
