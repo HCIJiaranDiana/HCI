@@ -5,9 +5,12 @@ import com.biboheart.brick.model.BhResponseResult;
 import com.entity.Shop;
 import com.entity.User;
 import com.entity.UserFlavor;
+import com.entity.UserPreference;
 import com.service.ShopService;
 import com.service.UserFlavorService;
+import com.service.UserPreferenceService;
 import com.service.UserService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserFlavorService userFlavorService;
+    @Autowired
+    private UserPreferenceService userPreferenceService;
+
     @Autowired
     private ShopService shopService;
 
@@ -96,5 +102,105 @@ public class UserController {
         String lastShopType = lastShop.getShoptype();
         boolean ret = userService.updateUserFlavor(user_id,lastShopType,feedback);
         return ret;
+    }
+    /**
+     * 处理用户w问卷
+     * @param userid 用户id
+     * @param param 用户问卷结果
+     * @return
+     */
+    @RequestMapping(value = "/handlequiz")
+    public boolean handlequiz(Long userid, JSONObject param) throws BhException{
+        User user = userService.load(userid);
+        if(user == null) {
+            return false;
+        }
+        UserFlavor userFlavor = userFlavorService.load(userid);
+        if(userFlavor == null) {
+            return false;
+        }
+        UserPreference userPreference = userPreferenceService.load(userid);
+        if(userPreference == null) {
+            return false;
+        }
+        float tag1 = Float.parseFloat(param.getString("tag1"));
+        float tag2 = Float.parseFloat(param.getString("tag2"));
+        float tag3 = Float.parseFloat(param.getString("tag3"));
+        float tag4 = Float.parseFloat(param.getString("tag4"));
+        float tag5 = Float.parseFloat(param.getString("tag5"));
+        float tag6 = Float.parseFloat(param.getString("tag6"));
+        float tag7 = Float.parseFloat(param.getString("tag7"));
+        float tag8 = Float.parseFloat(param.getString("tag8"));
+        float tag9 = Float.parseFloat(param.getString("tag9"));
+        float tag10 = Float.parseFloat(param.getString("tag10"));
+        float tag11 = Float.parseFloat(param.getString("tag11"));
+        float tag12 = Float.parseFloat(param.getString("tag12"));
+        float tag13 = Float.parseFloat(param.getString("tag13"));
+        float tag14 = Float.parseFloat(param.getString("tag14"));
+        float tag15 = Float.parseFloat(param.getString("tag15"));
+        float tag16 = Float.parseFloat(param.getString("tag16"));
+        float tag17 = Float.parseFloat(param.getString("tag17"));
+        float tag18 = Float.parseFloat(param.getString("tag18"));
+        float tag19 = Float.parseFloat(param.getString("tag19"));
+        float pospre = Float.parseFloat(param.getString("pospre"));
+        float pricepre = Float.parseFloat(param.getString("pricepre"));
+        float reviewpre = Float.parseFloat(param.getString("reviewpre"));
+
+        userPreference.setPos_pre(pospre);
+        userPreference.setPos_pre(pricepre);
+        userPreference.setPos_pre(reviewpre);
+        userPreferenceService.save(userPreference);
+
+        userFlavor.setTag1(tag1);
+        userFlavor.setTag2(tag2);
+        userFlavor.setTag3(tag3);
+        userFlavor.setTag4(tag4);
+        userFlavor.setTag5(tag5);
+        userFlavor.setTag6(tag6);
+        userFlavor.setTag7(tag7);
+        userFlavor.setTag8(tag8);
+        userFlavor.setTag9(tag9);
+        userFlavor.setTag10(tag10);
+        userFlavor.setTag11(tag11);
+        userFlavor.setTag12(tag12);
+        userFlavor.setTag13(tag13);
+        userFlavor.setTag14(tag14);
+        userFlavor.setTag15(tag15);
+        userFlavor.setTag16(tag16);
+        userFlavor.setTag17(tag17);
+        userFlavor.setTag18(tag18);
+        userFlavor.setTag19(tag19);
+        userFlavorService.save(userFlavor);
+
+        user.setUserType(1);
+        userService.save(user);
+        return true;
+    }
+    /**
+     * 处理用户w问卷
+     * @param userid 用户id
+     * @param param 用户问卷结果
+     * @return
+     */
+    @RequestMapping(value = "/handleprechange")
+    public boolean handleprechange(Long userid, JSONObject param) throws BhException{
+        User user = userService.load(userid);
+        if(user == null) {
+            return false;
+        }
+        UserPreference userPreference = userPreferenceService.load(userid);
+        if(userPreference == null) {
+            return false;
+        }
+        float pospre = Float.parseFloat(param.getString("pospre"));
+        float pricepre = Float.parseFloat(param.getString("pricepre"));
+        float reviewpre = Float.parseFloat(param.getString("reviewpre"));
+
+        userPreference.setPos_pre(pospre);
+        userPreference.setPos_pre(pricepre);
+        userPreference.setPos_pre(reviewpre);
+        userPreferenceService.save(userPreference);
+
+        return true;
     }
 }

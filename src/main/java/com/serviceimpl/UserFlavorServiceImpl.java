@@ -56,7 +56,6 @@ public class UserFlavorServiceImpl implements UserFlavorService {
         UserFlavor userFlavor = userFlavorRepository.findById(id).get();
         return userFlavor;
     }
-
     @Override
     public List<Float> getTagWeigh(Long id){
         UserFlavor userFlavor = userFlavorRepository.findById(id).get();
@@ -143,5 +142,4 @@ public class UserFlavorServiceImpl implements UserFlavorService {
             return f;
         }
     }
-
 }

@@ -50,5 +50,4 @@ public class UserFlavorController {
         UserFlavor userFlavor = userFlavorService.load(id);
         return new BhResponseResult<>(0, "success", userFlavor);
     }
-
 }

@@ -199,16 +199,16 @@ public class ShopController {
             shopCost.add(shop.getCost());
         }
 
-        List<Float> shopScore = new ArrayList<>();
         float maxScore = -1000000.0f;
         int maxScoreIndex = -1;
         for(int i = 0 ; i<shopList.size() ; i++){
-            float posScore =  - userPreference.getPos_pre() * shopDistance.get(i) ;
-            if(shopDistance.get(i)<0.1) System.out.println("Shop:" + shopList.get(i));
-            float costScore = - userPreference.getPrice_pre() * shopCost.get(i) ;
-
-            float reviewScore = userPreference.getReview_pre() * shopReview.get(i) ;
-
+            float posScore =  - userPreference.getPos_pre() * 100.0f * (float)Math.exp(5 * shopDistance.get(i) - 1) ;
+            System.out.println("posScore: "+posScore);
+            if(shopDistance.get(i)<0.2) System.out.println("Shop:" + shopList.get(i));
+            float costScore = - userPreference.getPrice_pre() * shopCost.get(i) * (float)Math.random();
+            System.out.println("costScore: "+costScore);
+            float reviewScore = userPreference.getReview_pre() * shopReview.get(i) * 100.0f * (float)Math.random();
+            System.out.println("reviewScore: "+reviewScore);
             float tmpScore = posScore + costScore + reviewScore;
 
             if (tmpScore>maxScore) {
